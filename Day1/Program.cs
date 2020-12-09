@@ -6,7 +6,7 @@ namespace AdventOfCode
 {
     internal static class Program
     {
-        static int GetNum(List<int> numbers)
+        private static int GetNum2(List<int> numbers)
         {
             for (var i = 0; i <= numbers.Count - 1; i++)
             {
@@ -22,7 +22,23 @@ namespace AdventOfCode
                 }
             }
 
-            return 0;
+            return -1;
+        }
+
+        private static int GetNum(List<int> numbers)
+        {
+            for (var i = 0; i <= numbers.Count - 1; i++)
+            {
+                for (var a = 0; a <= numbers.Count - 1; a++)
+                {
+                    if (numbers[i] + numbers[a] == 2020 && a != i)
+                    {
+                        return numbers[i] * numbers[a];
+                    }
+                }
+            }
+
+            return -1;
         }
         
         static void Main(string[] args)
@@ -36,7 +52,9 @@ namespace AdventOfCode
                     numbers.Add(Convert.ToInt32(s));
                 }
             }
-            Console.WriteLine(GetNum(numbers));
+            
+            Console.WriteLine("Part 1: " + GetNum(numbers));
+            Console.WriteLine("Part 2: " + GetNum2(numbers));
         }
     }
 }
